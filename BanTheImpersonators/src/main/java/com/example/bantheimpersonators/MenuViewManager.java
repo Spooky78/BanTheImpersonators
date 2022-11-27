@@ -19,19 +19,21 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 public class MenuViewManager {
     private static final int WIDTH = 1000;
-    private static final int HEIGHT = 800;
+    private static final int HEIGHT = 600;
     private static final String BACKGROUND_PATH = "background.png";
-    private final String fontPath;
-    {
+    private static final String FONT_PATH;
+    static {
         try {
-            fontPath = String.valueOf(new File(ClassLoader.getSystemResource(
+            FONT_PATH = String.valueOf(new File(ClassLoader.getSystemResource(
                 "Hacked.ttf").toURI()));
         } catch (URISyntaxException e) {
             throw new RuntimeException(e);
         }
     }
+
     private final VBox menuPane;
     private final Stage menuStage;
     /**
@@ -47,19 +49,54 @@ public class MenuViewManager {
         menuPane.setSpacing(50);
         createBackground();
         createTitle();
+        createStartButton();
+        createHelpButton();
+        createExitButton();
     }
 
+    /**
+     * Creates the title of the game.
+     */
     private void createTitle(){
         Text title = new Text("BAN THE IMPERSONATORS!");
         title.setFill(Color.WHITE);
         try {
-            title.setFont(Font.loadFont(new FileInputStream(fontPath), 90));
+            title.setFont(Font.loadFont(new FileInputStream(FONT_PATH), 90));
         } catch (FileNotFoundException e) {
             title.setFont(Font.font("Verdana", 90));
         }
         menuPane.getChildren().add(title);
     }
 
+    /**
+     * Creates the start button.
+     */
+    private void createStartButton(){
+        MenuButton startButton = new MenuButton("START");
+        menuPane.getChildren().add(startButton);
+    }
+
+    /**
+     * Creates the help button.
+     */
+    private void createHelpButton() {
+        MenuButton helpButton = new MenuButton("Help");
+        menuPane.getChildren().add(helpButton);
+        //helpButton.setOnAction(actionEvent -> );
+    }
+
+    /**
+     * Creates the exit button, that exits the application.
+     */
+    private void createExitButton() {
+        MenuButton exitButton = new MenuButton("Exit");
+        menuPane.getChildren().add(exitButton);
+        exitButton.setOnAction(actionEvent -> menuStage.close());
+    }
+
+    /**
+     * Sets the background of the menu.
+     */
     private void createBackground(){
         Image backgroundImage = new Image(BACKGROUND_PATH, WIDTH, HEIGHT, false, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,

@@ -78,6 +78,10 @@ public class MenuViewManager {
     private void createStartButton() {
         MenuButton startButton = new MenuButton("START");
         menuPane.getChildren().add(startButton);
+        startButton.setOnAction(actionEvent -> {
+            GameViewManager gameManager = new GameViewManager();
+            gameManager.createNewGame(menuStage);
+        });
     }
 
     /**

@@ -23,6 +23,10 @@ import javafx.stage.Stage;
 public class MenuViewManager {
     private static final int WIDTH = 1000;
     private static final int HEIGHT = 600;
+    private static final int SPACING = 50;
+    private static final int PADDING = 30;
+    private static final int TITLE_FONT_SIZE = 90;
+    private static final int BACKGROUND_SIZE = 100;
     private static final String BACKGROUND_PATH = "background.png";
     private static final String FONT_PATH;
     static {
@@ -45,8 +49,8 @@ public class MenuViewManager {
         menuStage = new Stage();
         menuStage.setScene(menuScene);
         menuPane.setAlignment(Pos.TOP_CENTER);
-        menuPane.setPadding(new Insets(30));
-        menuPane.setSpacing(50);
+        menuPane.setPadding(new Insets(PADDING));
+        menuPane.setSpacing(SPACING);
         createBackground();
         createTitle();
         createStartButton();
@@ -57,13 +61,13 @@ public class MenuViewManager {
     /**
      * Creates the title of the game.
      */
-    private void createTitle(){
+    private void createTitle() {
         Text title = new Text("BAN THE IMPERSONATORS!");
         title.setFill(Color.WHITE);
         try {
-            title.setFont(Font.loadFont(new FileInputStream(FONT_PATH), 90));
+            title.setFont(Font.loadFont(new FileInputStream(FONT_PATH), TITLE_FONT_SIZE));
         } catch (FileNotFoundException e) {
-            title.setFont(Font.font("Verdana", 90));
+            title.setFont(Font.font("Verdana", TITLE_FONT_SIZE));
         }
         menuPane.getChildren().add(title);
     }
@@ -71,7 +75,7 @@ public class MenuViewManager {
     /**
      * Creates the start button.
      */
-    private void createStartButton(){
+    private void createStartButton() {
         MenuButton startButton = new MenuButton("START");
         menuPane.getChildren().add(startButton);
     }
@@ -97,11 +101,11 @@ public class MenuViewManager {
     /**
      * Sets the background of the menu.
      */
-    private void createBackground(){
+    private void createBackground() {
         Image backgroundImage = new Image(BACKGROUND_PATH, WIDTH, HEIGHT, false, false);
-        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(100, 100,
-            true, true, true, true));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+            new BackgroundSize(BACKGROUND_SIZE, BACKGROUND_SIZE, true, true, true, true));
         menuPane.setBackground(new Background(background));
     }
 

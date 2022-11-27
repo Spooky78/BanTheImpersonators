@@ -20,6 +20,8 @@ public class MenuButton extends Button {
     private static final int WIDTH = 200;
     private static final int HEIGHT = 83;
     private static final int FONT_SIZE = 30;
+    private static final int SPACING = 20;
+    private static final int BACKGROUND_SIZE = 100;
     private static final String BACKGROUND_PATH = "button.png";
     private static final String FONT_PATH;
     static {
@@ -61,12 +63,12 @@ public class MenuButton extends Button {
      */
     private void setButtonStyle() {
         Image backgroundImage = new Image(BACKGROUND_PATH, WIDTH, HEIGHT, false, false);
-        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-            BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new BackgroundSize(100, 100,
-            true, true, true, true));
+        BackgroundImage background = new BackgroundImage(backgroundImage,
+            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, new
+            BackgroundSize(BACKGROUND_SIZE, BACKGROUND_SIZE, true, true, true, true));
         setBackground(new Background(background));
 
         setTextFill(Color.WHITE);
-        setPadding(new Insets(20));
+        setPadding(new Insets(SPACING));
     }
 }

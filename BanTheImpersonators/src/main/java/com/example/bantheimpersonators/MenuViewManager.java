@@ -79,7 +79,12 @@ public class MenuViewManager {
         MenuButton startButton = new MenuButton("START");
         menuPane.getChildren().add(startButton);
         startButton.setOnAction(actionEvent -> {
-            GameViewManager gameManager = new GameViewManager();
+            GameViewManager gameManager = null;
+            try {
+                gameManager = new GameViewManager();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
             gameManager.createNewGame(menuStage);
         });
     }

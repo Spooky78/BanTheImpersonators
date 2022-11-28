@@ -1,5 +1,6 @@
 package com.example.bantheimpersonators;
 
+import java.io.FileNotFoundException;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
@@ -22,12 +23,13 @@ public class GameViewManager {
     /**
      * Creates a main menu window.
      */
-    public GameViewManager() {
+    public GameViewManager() throws FileNotFoundException {
         gamePane = new VBox();
         Scene gameScene = new Scene(gamePane, WIDTH, HEIGHT);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
         createBackground();
+        Level testLevel = new Level(0);
     }
 
     /**

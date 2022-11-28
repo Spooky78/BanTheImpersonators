@@ -1,13 +1,17 @@
 package com.example.bantheimpersonators;
 
 import java.io.FileNotFoundException;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -16,7 +20,7 @@ public class GameViewManager {
     private static final int HEIGHT = 600;
     private static final int BACKGROUND_SIZE = 100;
     private static final String BACKGROUND_PATH = "background.png";
-    private final VBox gamePane;
+    private final FlowPane gamePane;
     private final Stage gameStage;
     private Stage menuStage;
 
@@ -24,12 +28,13 @@ public class GameViewManager {
      * Creates a main menu window.
      */
     public GameViewManager() throws FileNotFoundException {
-        gamePane = new VBox();
+        gamePane = new FlowPane();
+        gamePane.setAlignment(Pos.BOTTOM_LEFT);
         Scene gameScene = new Scene(gamePane, WIDTH, HEIGHT);
         gameStage = new Stage();
         gameStage.setScene(gameScene);
         createBackground();
-        Level testLevel = new Level(0);
+        createTileMap();
     }
 
     /**
@@ -41,6 +46,12 @@ public class GameViewManager {
         this.menuStage.hide();
         createBackground();
         gameStage.show();
+    }
+
+    private void createTileMap() throws FileNotFoundException {
+        Level testLevel = new Level(0);
+        //gamePane.setAlignment(Pos.BASELINE_LEFT);
+        gamePane.getChildren().add(testLevel.getTilePane());
     }
 
     /**
